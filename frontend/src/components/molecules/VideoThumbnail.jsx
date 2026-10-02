@@ -7,6 +7,7 @@ export const VideoThumbnail = ({
   title,
   showPlayOverlay = true,
   className = '',
+  priority = false,
 }) => {
   const resolvedUrl = resolveMediaUrl(thumbnailUrl);
 
@@ -16,7 +17,10 @@ export const VideoThumbnail = ({
         src={resolvedUrl}
         alt={title || 'Miniatura del video'}
         className="thumbnail-img"
-        loading="lazy"
+        width="640"
+        height="360"
+        loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : 'auto'}
         decoding="async"
         onError={(e) => {
           e.target.onerror = null;

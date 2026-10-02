@@ -2,7 +2,7 @@ import React from 'react';
 import { Avatar } from '../atoms';
 import { VideoThumbnail, VideoMetadata } from '../molecules';
 
-export const VideoCard = ({ video, onSelectVideo }) => {
+export const VideoCard = ({ video, onSelectVideo, priority = false }) => {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -11,7 +11,7 @@ export const VideoCard = ({ video, onSelectVideo }) => {
   };
 
   return (
-    <article
+    <div
       className="video-card"
       onClick={() => onSelectVideo(video.id)}
       onKeyDown={handleKeyDown}
@@ -23,6 +23,7 @@ export const VideoCard = ({ video, onSelectVideo }) => {
         thumbnailUrl={video.thumbnail_url}
         title={video.title}
         showPlayOverlay={true}
+        priority={priority}
       />
 <div className="video-info">
         <Avatar
@@ -36,6 +37,6 @@ export const VideoCard = ({ video, onSelectVideo }) => {
           createdAt={video.created_at}
         />
       </div>
-    </article>
+    </div>
   );
 };

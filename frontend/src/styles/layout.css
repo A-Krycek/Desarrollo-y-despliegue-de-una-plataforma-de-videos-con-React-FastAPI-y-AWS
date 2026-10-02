@@ -194,8 +194,8 @@ img, video {
 }
 
 .nav-button.active {
-  color: var(--primary);
-  background-color: rgba(59, 130, 246, 0.1);
+  color: #60a5fa;
+  background-color: rgba(59, 130, 246, 0.15);
 }
 
 .btn-upload {
@@ -336,7 +336,7 @@ img, video {
 
 .footer-copyright {
   font-size: 0.8rem;
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
 @media (min-width: 768px) {

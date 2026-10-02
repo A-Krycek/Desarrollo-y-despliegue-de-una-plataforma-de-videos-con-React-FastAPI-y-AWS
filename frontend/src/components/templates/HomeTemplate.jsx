@@ -74,11 +74,12 @@ export const HomeTemplate = ({
 
         <>
           <div className="videos-grid">
-            {videos.map((video) => (
+            {videos.map((video, index) => (
               <VideoCard
                 key={video.id}
                 video={video}
                 onSelectVideo={onSelectVideo}
+                priority={index < 2}
               />
             ))}
           </div>

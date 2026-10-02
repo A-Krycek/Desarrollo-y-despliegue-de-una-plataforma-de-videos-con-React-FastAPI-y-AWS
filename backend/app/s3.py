@@ -136,7 +136,10 @@ async def upload_file_stream(
                         Fileobj=f_in,
                         Bucket=bucket_name,
                         Key=unique_key,
-                        ExtraArgs={"ContentType": content_type}
+                        ExtraArgs={
+                            "ContentType": content_type,
+                            "CacheControl": "public, max-age=31536000, immutable"
+                        }
                     )
 
             await asyncio.to_thread(_upload_to_s3)
