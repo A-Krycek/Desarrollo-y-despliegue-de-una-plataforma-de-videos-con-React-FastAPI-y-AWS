@@ -1,5 +1,4 @@
 import React from 'react';
-import { HardDrive, Server, Database, Cloud } from 'lucide-react';
 import { Navbar } from '../organisms/Navbar';
 
 export const MainLayout = ({
@@ -11,33 +10,19 @@ export const MainLayout = ({
 }) => {
   return (
     <div className="app-layout">
-<Navbar
+      <Navbar
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         onSearch={onSearch}
         onOpenUpload={onOpenUpload}
       />
-<main className="app-main-content">
+      <main className="app-main-content">
         {children}
       </main>
-<footer className="app-footer">
+      <footer className="app-footer">
         <div className="footer-container">
-          <div className="footer-badges">
-            <span className="footer-badge">
-              <HardDrive size={14} /> S3 Frontend (SPA)
-            </span>
-            <span className="footer-badge">
-              <Server size={14} /> EC2 (FastAPI)
-            </span>
-            <span className="footer-badge">
-              <Database size={14} /> Amazon RDS (DB)
-            </span>
-            <span className="footer-badge">
-              <Cloud size={14} /> S3 Media (Videos & Miniaturas)
-            </span>
-          </div>
           <p className="footer-copyright">
-            Plataforma de Videos Cloud · Arquitectura Serverless & Cloud AWS
+            &copy; {new Date().getFullYear()} Plataforma de Videos. Todos los derechos reservados.
           </p>
         </div>
       </footer>
