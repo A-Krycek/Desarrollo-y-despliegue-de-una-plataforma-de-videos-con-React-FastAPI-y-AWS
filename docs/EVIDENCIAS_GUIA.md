@@ -34,9 +34,9 @@ Toma capturas de pantalla claras de la consola de AWS y de la aplicación web:
      ```
      Mostrando el banner oficial de FastAPI CLI:
      ```
-     ⚡️ Starting FastAPI in development mode
-     🐍 Using import string: main:app
-     🌐 Server started at http://0.0.0.0:8000
+      Starting FastAPI in development mode
+      Using import string: main:app
+      Server started at http://0.0.0.0:8000
         Documentation at http://0.0.0.0:8000/docs
      ```
 

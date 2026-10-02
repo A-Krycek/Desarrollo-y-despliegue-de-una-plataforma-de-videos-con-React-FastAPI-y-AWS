@@ -9,7 +9,7 @@ Plataforma de videos tipo Single Page Application (SPA) desarrollada con **React
 
 ---
 
-## 🏛️ Arquitectura del Sistema
+## Arquitectura del Sistema
 
 El proyecto implementa una arquitectura cloud desacoplada, moderna y escalable:
 
@@ -26,7 +26,7 @@ Para ver los diagramas detallados y políticas, consulta el archivo [ARQUITECTUR
 
 ---
 
-## 📄 Estructura de Páginas de la SPA
+## Estructura de Páginas de la SPA
 
 La aplicación cuenta estrictamente con las 4 páginas requeridas:
 
@@ -56,7 +56,7 @@ La aplicación cuenta estrictamente con las 4 páginas requeridas:
 
 ---
 
-## 🚀 Estructura del Repositorio
+## Estructura del Repositorio
 
 ```
 video-platform-aws/
@@ -101,7 +101,7 @@ video-platform-aws/
 
 ---
 
-## 💻 Ejecución y Pruebas en Entorno Local
+## Ejecución y Pruebas en Entorno Local
 
 Puedes probar la plataforma de forma local inmediatamente:
 
@@ -139,7 +139,7 @@ Abre en tu navegador: `http://localhost:5173`
 
 ---
 
-## ☁️ Despliegue Manual en Amazon EC2 (Paso a Paso)
+## Despliegue Manual en Amazon EC2 (Paso a Paso)
 
 Para encender el servidor manualmente en tu instancia EC2:
 
@@ -190,7 +190,7 @@ Para encender el servidor manualmente en tu instancia EC2:
 
 ---
 
-## 📋 Resumen de Endpoints de la API
+## Resumen de Endpoints de la API
 
 | Método | Endpoint | Descripción | Autenticación |
 | :--- | :--- | :--- | :---: |
@@ -213,7 +213,7 @@ Para encender el servidor manualmente en tu instancia EC2:
 
 ---
 
-## 📦 Lista de Verificación para la Entrega
+## Lista de Verificación para la Entrega
 
 Antes de entregar la actividad, asegúrate de tener todos los requisitos listados en [EVIDENCIAS_GUIA.md](docs/EVIDENCIAS_GUIA.md):
 - [x] Repositorio en GitHub / GitLab con código limpio y sin credenciales.
