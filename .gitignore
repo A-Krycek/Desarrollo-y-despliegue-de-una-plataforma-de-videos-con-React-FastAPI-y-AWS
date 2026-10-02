@@ -1,0 +1,47 @@
+# =======================================================================
+# GITIGNORE - PLATAFORMA DE VIDEOS AWS (REACT + FASTAPI)
+# =======================================================================
+
+# Variables de entorno y credenciales sensibles (NUNCA SUBIR A GIT)
+.env
+.env.*
+!.env.example
+backend/.env
+frontend/.env
+*.env
+
+# Node & Frontend
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python & Backend
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+backend/venv/
+.pytest_cache/
+*.db
+*.sqlite
+*.sqlite3
+video_platform.db
+
+# Almacenamiento local de prueba / subidas temporales
+backend/uploads/videos/*
+backend/uploads/thumbnails/*
+!backend/uploads/**/.gitkeep
+
+# IDEs, editores y sistema operativo
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini

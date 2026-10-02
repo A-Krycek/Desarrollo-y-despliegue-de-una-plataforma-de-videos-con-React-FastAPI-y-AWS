@@ -1,0 +1,26 @@
+{
+  "CORSRules": [
+    {
+      "AllowedHeaders": [
+        "*"
+      ],
+      "AllowedMethods": [
+        "GET",
+        "HEAD",
+        "PUT",
+        "POST"
+      ],
+      "AllowedOrigins": [
+        "http://video-platform-frontend-kry.s3-website-us-east-1.amazonaws.com",
+        "http://video-platform-frontend-kry.s3-website.us-east-1.amazonaws.com",
+        "http://3.89.105.251:8000",
+        "http://localhost:5173",
+        "*"
+      ],
+      "ExposeHeaders": [
+        "ETag"
+      ],
+      "MaxAgeSeconds": 3000
+    }
+  ]
+}
