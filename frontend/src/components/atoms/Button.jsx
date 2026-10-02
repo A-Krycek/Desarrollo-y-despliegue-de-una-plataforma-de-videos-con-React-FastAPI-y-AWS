@@ -11,7 +11,7 @@ const VARIANTS = {
   refresh: 'btn-refresh',
   submit: 'btn-auth-submit',
   'comment-submit': 'btn-submit-comment',
-  'modal-submit': 'btn-submit-modal',
+  'modal-submit': 'btn-primary btn-submit-modal',
   back: 'btn-back',
   share: 'btn-share',
   close: 'btn-close-modal',
