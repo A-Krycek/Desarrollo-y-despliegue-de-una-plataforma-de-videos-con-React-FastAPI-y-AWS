@@ -106,8 +106,8 @@ sudo apt install -y python3 python3-pip python3-venv libpq-dev git nodejs npm
 
 ### 3.3. Clonación o Actualización del Repositorio
 ```bash
-git clone https://github.com/A-Krycek/Desarrollo-y-despliegue-de-una-plataforma-de-videos-con-React-FastAPI-y-AWS.git video-platform-aws
-cd video-platform-aws/backend
+git clone https://github.com/A-Krycek/Desarrollo-y-despliegue-de-una-plataforma-de-videos-con-React-FastAPI-y-AWS.git
+cd Desarrollo-y-despliegue-de-una-plataforma-de-videos-con-React-FastAPI-y-AWS/backend
 ```
 
 ### 3.4. Entorno Virtual e Instalación de Dependencias
@@ -125,7 +125,7 @@ fastapi --help
 ```
 
 ### 3.5. Configuración del Archivo `.env`
-Crea o edita `/home/ubuntu/video-platform-aws/backend/.env`:
+Crea o edita `/home/ubuntu/Desarrollo-y-despliegue-de-una-plataforma-de-videos-con-React-FastAPI-y-AWS/backend/.env`:
 ```ini
 ENVIRONMENT=production
 
@@ -170,7 +170,7 @@ pm2 --version
 ```
 
 2. **Levantar la API con el ejecutable FastAPI del entorno virtual**:
-Estando en `~/video-platform-aws/backend`:
+Estando en `~/Desarrollo-y-despliegue-de-una-plataforma-de-videos-con-React-FastAPI-y-AWS/backend`:
 ```bash
 pm2 start venv/bin/fastapi --name video-platform-api -- run app/main.py --host 0.0.0.0 --port 8000
 ```

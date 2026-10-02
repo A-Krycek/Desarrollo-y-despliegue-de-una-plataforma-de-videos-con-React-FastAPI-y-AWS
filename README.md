@@ -157,8 +157,8 @@ Para encender el servidor manualmente en tu instancia EC2:
 
 3. **Clona tu repositorio**:
    ```bash
-   git clone https://github.com/A-Krycek/Desarrollo-y-despliegue-de-una-plataforma-de-videos-con-React-FastAPI-y-AWS.git video-platform-aws
-   cd video-platform-aws/backend
+   git clone https://github.com/A-Krycek/Desarrollo-y-despliegue-de-una-plataforma-de-videos-con-React-FastAPI-y-AWS.git
+   cd Desarrollo-y-despliegue-de-una-plataforma-de-videos-con-React-FastAPI-y-AWS/backend
    ```
 
 4. **Crea el entorno virtual e instala dependencias**:

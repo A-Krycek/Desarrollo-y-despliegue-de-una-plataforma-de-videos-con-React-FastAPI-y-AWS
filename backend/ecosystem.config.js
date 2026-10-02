@@ -4,7 +4,7 @@ module.exports = {
       name: 'video-platform-api',
       script: 'venv/bin/fastapi',
       args: 'run app/main.py --host 0.0.0.0 --port 8000',
-      cwd: '/home/ubuntu/video-platform-aws/backend',
+      cwd: '/home/ubuntu/Desarrollo-y-despliegue-de-una-plataforma-de-videos-con-React-FastAPI-y-AWS/backend',
       interpreter: 'none',
       autorestart: true,
       watch: false,
