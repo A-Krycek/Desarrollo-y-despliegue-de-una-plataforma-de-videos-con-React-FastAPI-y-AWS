@@ -19,22 +19,17 @@ export const VideoCard = ({ video, onSelectVideo }) => {
       tabIndex={0}
       aria-label={`Reproducir video: ${video.title} por ${video.user_name || 'Usuario'}`}
     >
-      {/* THUMBNAIL MOLECULE */}
-      <VideoThumbnail
+<VideoThumbnail
         thumbnailUrl={video.thumbnail_url}
         title={video.title}
         showPlayOverlay={true}
       />
-
-      {/* VIDEO INFO ORGANISM SECTION */}
-      <div className="video-info">
+<div className="video-info">
         <Avatar
           name={video.user_name || 'U'}
           size="md"
         />
-
-        {/* METADATA MOLECULE */}
-        <VideoMetadata
+<VideoMetadata
           title={video.title}
           authorName={video.user_name || 'Usuario'}
           views={video.views}

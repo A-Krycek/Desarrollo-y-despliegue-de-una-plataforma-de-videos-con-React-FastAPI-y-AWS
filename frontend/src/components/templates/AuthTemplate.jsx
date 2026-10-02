@@ -20,8 +20,7 @@ export const AuthTemplate = ({
   return (
     <div className="auth-page-container">
       <div className="auth-card">
-        {/* ENCABEZADO DE TARJETA */}
-        <div className="auth-header">
+<div className="auth-header">
           <div className="auth-logo-badge">
             {isLoginMode ? <LogIn size={32} /> : <UserPlus size={32} />}
           </div>
@@ -34,9 +33,7 @@ export const AuthTemplate = ({
               : 'Únete a nuestra plataforma de videos desplegada en AWS'}
           </p>
         </div>
-
-        {/* PESTAÑAS (TABS) */}
-        <div className="auth-tabs">
+<div className="auth-tabs">
           <button
             type="button"
             className={`auth-tab ${isLoginMode ? 'active' : ''}`}
@@ -52,13 +49,9 @@ export const AuthTemplate = ({
             Registro
           </button>
         </div>
-
-        {/* MENSAJES DE ALERTA */}
-        <Alert type="error" message={error} />
+<Alert type="error" message={error} />
         <Alert type="success" message={successMsg} />
-
-        {/* FORMULARIO */}
-        <form onSubmit={onSubmit} className="auth-form">
+<form onSubmit={onSubmit} className="auth-form">
           {!isLoginMode && (
             <FormField id="auth-name" label="Nombre Completo" required icon={User}>
               <Input

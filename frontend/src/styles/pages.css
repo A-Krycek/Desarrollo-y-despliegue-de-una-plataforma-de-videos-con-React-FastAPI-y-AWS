@@ -1,6 +1,4 @@
-/* =======================================================================
-   CATÁLOGO DE VIDEOS (PÁGINA 2)
-   ======================================================================= */
+
 .catalog-header {
   display: flex;
   flex-direction: column;
@@ -70,7 +68,6 @@
   border-color: var(--border-light);
 }
 
-/* VIDEOS GRID (MOBILE FIRST: 1 columna en móvil, 2 en tablet, 3-4 en desktop) */
 .videos-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -118,7 +115,6 @@
   box-shadow: var(--shadow-md);
 }
 
-/* TARJETA DE VIDEO */
 .video-card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -253,9 +249,6 @@
   opacity: 0.5;
 }
 
-/* =======================================================================
-   REPRODUCTOR DE VIDEO (PÁGINA 3 - MOBILE FIRST)
-   ======================================================================= */
 .player-layout {
   display: grid;
   grid-template-columns: 1fr;
@@ -424,7 +417,6 @@
   white-space: pre-wrap;
 }
 
-/* SIDEBAR RECOMENDADOS */
 .player-sidebar {
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -519,9 +511,6 @@
   color: var(--text-muted);
 }
 
-/* =======================================================================
-   PERFIL DEL USUARIO (PÁGINA 4)
-   ======================================================================= */
 .profile-page-container {
   display: flex;
   flex-direction: column;
@@ -762,7 +751,6 @@
   gap: 0.25rem;
 }
 
-/* ACTIONS MOBILE FIRST: Botones cómodos para interacción táctil */
 .row-actions {
   display: flex;
   align-items: center;
@@ -838,9 +826,6 @@
   color: white;
 }
 
-/* =======================================================================
-   REGISTRO Y LOGIN (PÁGINA 1 - MOBILE FIRST)
-   ======================================================================= */
 .auth-page-container {
   display: flex;
   justify-content: center;

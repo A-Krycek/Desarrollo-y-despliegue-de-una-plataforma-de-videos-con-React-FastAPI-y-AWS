@@ -13,10 +13,8 @@ class User(Base):
     password_hash = Column(String(255), nullable=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
 
-    # Relaciones
     videos = relationship("Video", back_populates="user", cascade="all, delete-orphan")
     comments = relationship("Comment", back_populates="user", cascade="all, delete-orphan")
-
 
 class Video(Base):
     __tablename__ = "videos"
@@ -30,10 +28,8 @@ class Video(Base):
     user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False, index=True)
 
-    # Relaciones
     user = relationship("User", back_populates="videos")
     comments = relationship("Comment", back_populates="video", cascade="all, delete-orphan")
-
 
 class Comment(Base):
     __tablename__ = "comments"
@@ -44,6 +40,5 @@ class Comment(Base):
     video_id = Column(Integer, ForeignKey("videos.id", ondelete="CASCADE"), nullable=False, index=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False, index=True)
 
-    # Relaciones
     user = relationship("User", back_populates="comments")
     video = relationship("Video", back_populates="comments")

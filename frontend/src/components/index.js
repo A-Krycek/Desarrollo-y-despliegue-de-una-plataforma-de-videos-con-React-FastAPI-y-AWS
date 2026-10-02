@@ -1,20 +1,12 @@
-// ==========================================
-// ARQUITECTURA ATÓMICA - EXPORTACIONES
-// ==========================================
 
-// Átomos
 export * from './atoms';
 
-// Moléculas
 export * from './molecules';
 
-// Organismos
 export * from './organisms';
 
-// Plantillas (Templates)
 export * from './templates';
 
-// Compatibilidad hacia atrás para importaciones directas de componentes legacy
 export { Navbar } from './organisms/Navbar';
 export { VideoCard } from './organisms/VideoCard';
 export { VideoPlayerSection } from './organisms/VideoPlayerSection';

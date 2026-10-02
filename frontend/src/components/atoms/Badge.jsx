@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Badge = ({
   children,
-  variant = 'count', // 'count' | 'hero' | 'footer'
+  variant = 'count',
   icon: Icon = null,
   className = '',
 }) => {

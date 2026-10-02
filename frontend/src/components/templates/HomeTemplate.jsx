@@ -21,11 +21,8 @@ export const HomeTemplate = ({
 
   return (
     <div className="home-page-container">
-      {/* HERO BANNER ORGANISM */}
-      <HeroBanner onOpenUpload={onOpenUpload} />
-
-      {/* TÍTULO DE SECCIÓN Y CONTADOR */}
-      <div className="catalog-header">
+<HeroBanner onOpenUpload={onOpenUpload} />
+<div className="catalog-header">
         <div className="catalog-title-wrapper">
           <Film size={22} className="catalog-icon" />
           <h2 className="catalog-title">
@@ -46,16 +43,12 @@ export const HomeTemplate = ({
           <span>Actualizar</span>
         </Button>
       </div>
-
-      {/* ESTADO DE ERROR */}
-      <Alert
+<Alert
         type="error"
         message={error ? 'Error de conexión:' : null}
         detail={error}
       />
-
-      {/* ESTADO DE CARGA */}
-      {loading ? (
+{loading ? (
         <div className="catalog-loading">
           <Spinner size={36} text="Obteniendo videos desde FastAPI en EC2..." />
         </div>
@@ -78,7 +71,7 @@ export const HomeTemplate = ({
           </Button>
         </div>
       ) : (
-        /* GRILLA DINÁMICA DE VIDEOS Y PAGINACIÓN */
+
         <>
           <div className="videos-grid">
             {videos.map((video) => (

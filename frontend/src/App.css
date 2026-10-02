@@ -1,7 +1,4 @@
-/* =======================================================================
-   ESTILOS PRINCIPALES DE LA SPA (MODULARES)
-   Arquitectura de estilos dividida por responsabilidades
-   ======================================================================= */
+
 @import './styles/layout.css';
 @import './styles/components.css';
 @import './styles/pages.css';

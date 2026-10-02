@@ -51,8 +51,7 @@ export const UserVideoList = ({
     <div className="user-videos-list">
       {videos.map((video) => (
         <div key={video.id} className="user-video-row">
-          {/* MINIATURA Y REPRODUCCIÓN */}
-          <div
+<div
             className="row-thumbnail"
             onClick={() => onSelectVideo(video.id)}
             onKeyDown={(e) => {
@@ -81,9 +80,7 @@ export const UserVideoList = ({
               <Play size={18} fill="white" />
             </div>
           </div>
-
-          {/* DETALLES */}
-          <div className="row-info">
+<div className="row-info">
             <h3
               className="row-title"
               onClick={() => onSelectVideo(video.id)}
@@ -110,9 +107,7 @@ export const UserVideoList = ({
               <StatItem icon={Calendar} value={formatDate(video.created_at)} />
             </div>
           </div>
-
-          {/* BOTONES DE GESTIÓN (CRUD) */}
-          <div className="row-actions">
+<div className="row-actions">
             <Button
               variant="secondary-sm"
               className="btn-action btn-edit"

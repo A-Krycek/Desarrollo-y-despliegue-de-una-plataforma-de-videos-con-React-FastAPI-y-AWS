@@ -1,9 +1,4 @@
--- =======================================================================
--- ESQUEMA DE BASE DE DATOS PARA AMAZON RDS (PostgreSQL / MySQL)
--- Plataforma de Videos
--- =======================================================================
 
--- 1. TABLA: users (Usuarios)
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -14,7 +9,6 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
 
--- 2. TABLA: videos (Videos publicados)
 CREATE TABLE IF NOT EXISTS videos (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
@@ -30,7 +24,6 @@ CREATE TABLE IF NOT EXISTS videos (
 CREATE INDEX IF NOT EXISTS idx_videos_user_id ON videos(user_id);
 CREATE INDEX IF NOT EXISTS idx_videos_created_at ON videos(created_at DESC);
 
--- 3. TABLA: comments (Comentarios en videos)
 CREATE TABLE IF NOT EXISTS comments (
     id SERIAL PRIMARY KEY,
     content TEXT NOT NULL,

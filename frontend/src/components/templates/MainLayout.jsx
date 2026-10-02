@@ -11,21 +11,16 @@ export const MainLayout = ({
 }) => {
   return (
     <div className="app-layout">
-      {/* NAVBAR ORGANISM */}
-      <Navbar
+<Navbar
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         onSearch={onSearch}
         onOpenUpload={onOpenUpload}
       />
-
-      {/* CONTENIDO PRINCIPAL */}
-      <main className="app-main-content">
+<main className="app-main-content">
         {children}
       </main>
-
-      {/* PIE DE PÁGINA CON ARQUITECTURA AWS */}
-      <footer className="app-footer">
+<footer className="app-footer">
         <div className="footer-container">
           <div className="footer-badges">
             <span className="footer-badge">

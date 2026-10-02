@@ -6,34 +6,27 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Settings:
-    # Entorno
     ENVIRONMENT: str = os.getenv("ENVIRONMENT", "development")
 
-    # Base de Datos (RDS PostgreSQL, RDS MySQL o SQLite local)
     DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./video_platform.db")
 
-    # AWS S3
     AWS_REGION: str = os.getenv("AWS_REGION", "us-east-1")
     AWS_ACCESS_KEY_ID: str = os.getenv("AWS_ACCESS_KEY_ID", "")
     AWS_SECRET_ACCESS_KEY: str = os.getenv("AWS_SECRET_ACCESS_KEY", "")
     S3_BUCKET_VIDEOS: str = os.getenv("S3_BUCKET_VIDEOS", "video-platform-videos-estudiante")
     S3_BUCKET_THUMBNAILS: str = os.getenv("S3_BUCKET_THUMBNAILS", "video-platform-thumbnails-estudiante")
 
-    # Seguridad & JWT
     JWT_SECRET_KEY: str = os.getenv("JWT_SECRET_KEY", "dev_secret_key_video_platform_2026")
     JWT_ALGORITHM: str = os.getenv("JWT_ALGORITHM", "HS256")
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES: int = int(os.getenv("JWT_ACCESS_TOKEN_EXPIRE_MINUTES", "1440"))
 
-    # CORS
     CORS_ORIGINS: List[str] = [origin.strip() for origin in os.getenv("CORS_ORIGINS", "*").split(",") if origin.strip()]
 
-    # Restricciones de archivos
     MAX_VIDEO_SIZE_MB: int = 100
-    MAX_VIDEO_SIZE_BYTES: int = 100 * 1024 * 1024  # 100 MB
+    MAX_VIDEO_SIZE_BYTES: int = 100 * 1024 * 1024
     ALLOWED_VIDEO_EXTENSIONS: List[str] = [".mp4"]
     ALLOWED_THUMBNAIL_EXTENSIONS: List[str] = [".jpg", ".jpeg", ".png"]
 
-    # Servidor
     HOST: str = os.getenv("HOST", "0.0.0.0")
     PORT: int = int(os.getenv("PORT", "8000"))
 

@@ -39,22 +39,17 @@ export const PlayerTemplate = ({
 
   return (
     <div className="player-layout">
-      {/* COLUMNA PRINCIPAL: VIDEO PLAYER Y COMENTARIOS */}
-      <main className="player-main">
+<main className="player-main">
         <VideoPlayerSection
           video={video}
           onBackToHome={onBackToHome}
         />
-
-        {/* SECCIÓN DE COMENTARIOS (PÁGINA 3) */}
-        <CommentSection
+<CommentSection
           videoId={video.id}
           onRequireAuth={onRequireAuth}
         />
       </main>
-
-      {/* COLUMNA LATERAL: VIDEOS RECOMENDADOS DINÁMICOS */}
-      <RecommendedVideos
+<RecommendedVideos
         recommended={recommended}
         loading={loadingRecs}
         onSelectVideo={onSelectVideo}

@@ -28,8 +28,7 @@ export const Navbar = ({ currentPage, setCurrentPage, onSearch, onOpenUpload }) 
   return (
     <header className="navbar">
       <div className="navbar-container">
-        {/* LOGO & BRAND CON NAVEGACIÓN ACCESIBLE */}
-        <div
+<div
           className="navbar-brand"
           onClick={() => setCurrentPage('home')}
           onKeyDown={(e) => {
@@ -50,16 +49,12 @@ export const Navbar = ({ currentPage, setCurrentPage, onSearch, onOpenUpload }) 
             <span className="brand-subtitle">AWS S3 · EC2 · RDS</span>
           </div>
         </div>
-
-        {/* SEARCH BAR MOLECULE */}
-        <SearchBar
+<SearchBar
           value={searchTerm}
           onChange={handleSearchChange}
           onSubmit={handleSearchSubmit}
         />
-
-        {/* NAVIGATION ACTIONS */}
-        <nav className="navbar-actions" aria-label="Navegación principal">
+<nav className="navbar-actions" aria-label="Navegación principal">
           <Button
             variant="nav"
             className={currentPage === 'home' ? 'active' : ''}

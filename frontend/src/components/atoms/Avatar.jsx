@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Avatar = ({
   name = 'U',
-  size = 'md', // 'sm' | 'md' | 'lg' | 'circle' | 'profile'
+  size = 'md',
   className = '',
 }) => {
   const initial = (name || 'U').charAt(0).toUpperCase();

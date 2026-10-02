@@ -3,7 +3,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 from app.config import settings
 
-# Adaptar URI para PostgreSQL si viene como postgres:// o postgresql:// sin dialecto explícito
 database_url = settings.DATABASE_URL
 if database_url.startswith("postgres://"):
     database_url = database_url.replace("postgres://", "postgresql+psycopg2://", 1)
@@ -35,11 +34,10 @@ except Exception as e:
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-
 Base = declarative_base()
 
 def get_db():
-    """Dependencia para inyección de sesión de base de datos en endpoints"""
+
     db = SessionLocal()
     try:
         yield db

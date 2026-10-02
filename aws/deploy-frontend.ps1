@@ -1,11 +1,8 @@
-# =======================================================================
-# SCRIPT POWERSHELL PARA COMPILAR Y SUBIR LA SPA A S3 FRONTEND
-# =======================================================================
+
 param(
     [string]$BucketFrontend = "video-platform-frontend-kry",
     [string]$Region = "us-east-1"
 )
-
 
 $ErrorActionPreference = "Stop"
 
@@ -26,7 +23,7 @@ if (-not (Test-Path $distDir)) {
 }
 
 Write-Host "=== 2. Sincronizando dist/ con s3://$BucketFrontend ===" -ForegroundColor Cyan
-# Subir únicamente dist/ (sin src/, node_modules/ ni package.json)
+
 aws s3 sync $distDir "s3://$BucketFrontend" --delete --region $Region
 
 Write-Host "=== ¡Despliegue del Frontend exitoso! ===" -ForegroundColor Green

@@ -2,16 +2,10 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { AuthTemplate } from '../components/templates';
 
-/**
- * PÁGINA 1: REGISTRO / LOGIN
- * Utiliza arquitectura atómica integrando el AuthTemplate con el estado de autenticación.
- * Permite: Crear una cuenta e Iniciar sesión con Nombre, Correo y Contraseña.
- */
 export const AuthPage = ({ onAuthSuccess }) => {
   const { login, register } = useAuth();
   const [isLoginMode, setIsLoginMode] = useState(true);
 
-  // Campos de formulario
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

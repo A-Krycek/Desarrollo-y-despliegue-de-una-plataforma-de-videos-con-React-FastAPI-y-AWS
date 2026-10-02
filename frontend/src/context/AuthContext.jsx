@@ -8,7 +8,6 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('token') || null);
   const [loading, setLoading] = useState(true);
 
-  // Cargar sesión persistida al iniciar la SPA
   useEffect(() => {
     const initializeAuth = async () => {
       const storedToken = localStorage.getItem('token');
@@ -20,7 +19,6 @@ export const AuthProvider = ({ children }) => {
           setUser(parsedUser);
           setToken(storedToken);
 
-          // Sincronizar datos más recientes desde EC2 / RDS
           const freshData = await getUserProfile(parsedUser.id);
           setUser(freshData);
           localStorage.setItem('user', JSON.stringify(freshData));
@@ -46,7 +44,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (name, email, password) => {
     const newUser = await registerUser(name, email, password);
-    // Tras registro, iniciar sesión automáticamente
+
     return await login(email, password);
   };
 

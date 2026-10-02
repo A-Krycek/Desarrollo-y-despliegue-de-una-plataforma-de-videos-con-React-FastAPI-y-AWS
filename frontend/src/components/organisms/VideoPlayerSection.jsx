@@ -28,8 +28,7 @@ export const VideoPlayerSection = ({ video, onBackToHome }) => {
 
   return (
     <div className="player-main-section">
-      {/* BOTÓN VOLVER */}
-      <div className="player-back-bar">
+<div className="player-back-bar">
         <Button
           variant="back"
           onClick={onBackToHome}
@@ -38,9 +37,7 @@ export const VideoPlayerSection = ({ video, onBackToHome }) => {
           Volver al Catálogo
         </Button>
       </div>
-
-      {/* REPRODUCTOR DE VIDEO HTML5 (S3 VIDEOS) */}
-      <div className="video-player-wrapper">
+<div className="video-player-wrapper">
         <video
           controls
           autoPlay
@@ -52,23 +49,18 @@ export const VideoPlayerSection = ({ video, onBackToHome }) => {
           Tu navegador no soporta la reproducción de video HTML5 en formato MP4.
         </video>
       </div>
-
-      {/* METADATOS DEL VIDEO */}
-      <div className="video-details-section">
+<div className="video-details-section">
         <h1 className="player-video-title">{video.title}</h1>
 
         <div className="player-meta-bar">
-          {/* AUTOR Y AVATAR */}
-          <div className="author-info-box">
+<div className="author-info-box">
             <Avatar name={video.user_name || 'U'} size="lg" />
             <div>
               <span className="author-name-large">{video.user_name || 'Usuario'}</span>
               <span className="author-subtext">Creador verificado</span>
             </div>
           </div>
-
-          {/* ESTADÍSTICAS Y ACCIONES */}
-          <div className="player-stats-box">
+<div className="player-stats-box">
             <span className="player-stat">
               <Eye size={18} />
               <strong>{video.views}</strong> vistas
@@ -86,9 +78,7 @@ export const VideoPlayerSection = ({ video, onBackToHome }) => {
             </Button>
           </div>
         </div>
-
-        {/* DESCRIPCIÓN */}
-        {video.description && (
+{video.description && (
           <div className="video-description-box">
             <h4 className="desc-heading">Descripción</h4>
             <p className="desc-content">{video.description}</p>

@@ -2,9 +2,6 @@ from datetime import datetime
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel, EmailStr, Field, ConfigDict
 
-# ==========================================
-# USUARIOS
-# ==========================================
 class UserCreate(BaseModel):
     name: str = Field(..., min_length=2, max_length=100, description="Nombre completo del usuario")
     email: EmailStr = Field(..., description="Correo electrónico único")
@@ -28,9 +25,6 @@ class TokenResponse(BaseModel):
     token_type: str = "bearer"
     user: UserResponse
 
-# ==========================================
-# VIDEOS
-# ==========================================
 class VideoUpdate(BaseModel):
     title: Optional[str] = Field(None, min_length=1, max_length=255, description="Nuevo título del video")
     description: Optional[str] = Field(None, description="Nueva descripción del video")
@@ -69,9 +63,6 @@ class PaginatedVideosResponse(BaseModel):
     limit: int
     pages: int
 
-# ==========================================
-# COMENTARIOS
-# ==========================================
 class CommentCreate(BaseModel):
     content: str = Field(..., min_length=1, max_length=1000, description="Texto del comentario")
 
@@ -91,9 +82,6 @@ class PaginatedCommentsResponse(BaseModel):
     page: int
     limit: int
 
-# ==========================================
-# RESPUESTAS GENÉRICAS
-# ==========================================
 class MessageResponse(BaseModel):
     message: str
     detail: Optional[str] = None

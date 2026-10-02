@@ -27,9 +27,8 @@ from app.s3 import (
 
 router = APIRouter(prefix="/videos", tags=["Videos"])
 
-
 def to_video_response(video: Video, user_name: str = "Usuario") -> VideoResponse:
-    """Helper para construir VideoResponse sin código duplicado"""
+
     return VideoResponse(
         id=video.id,
         title=video.title,
@@ -41,7 +40,6 @@ def to_video_response(video: Video, user_name: str = "Usuario") -> VideoResponse
         user_name=user_name,
         created_at=video.created_at
     )
-
 
 @router.post(
     "/presigned-url",
@@ -65,7 +63,6 @@ def get_presigned_urls(
     )
     return PresignedUrlResponse(video=video_info, thumbnail=thumb_info)
 
-
 @router.post(
     "/direct",
     response_model=VideoResponse,
@@ -78,11 +75,9 @@ def register_direct_video(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    # Validar extensiones de las keys para evitar inyecciones o archivos indebidos
     validate_file_extension(video_in.video_key, settings.ALLOWED_VIDEO_EXTENSIONS)
     validate_file_extension(video_in.thumbnail_key, settings.ALLOWED_THUMBNAIL_EXTENSIONS)
 
-    # Construir URLs seguras desde el servidor
     video_url = build_media_url(settings.S3_BUCKET_VIDEOS, video_in.video_key, "videos")
     thumbnail_url = build_media_url(settings.S3_BUCKET_THUMBNAILS, video_in.thumbnail_key, "thumbnails")
 
@@ -98,7 +93,6 @@ def register_direct_video(
     db.commit()
     db.refresh(new_video)
     return to_video_response(new_video, current_user.name)
-
 
 @router.post(
     "",
@@ -144,7 +138,6 @@ async def upload_video(
 
     return to_video_response(new_video, current_user.name)
 
-
 @router.get(
     "",
     response_model=PaginatedVideosResponse,
@@ -188,7 +181,6 @@ def list_videos(
         pages=pages
     )
 
-
 @router.get(
     "/{id}",
     response_model=VideoResponse,
@@ -209,7 +201,6 @@ def get_video_by_id(id: int, db: Session = Depends(get_db)):
     video, author_name = result
     return to_video_response(video, author_name)
 
-
 @router.post(
     "/{id}/views",
     summary="Registrar vista de video (Atómico)",
@@ -224,7 +215,6 @@ def record_video_view(id: int, db: Session = Depends(get_db)):
         )
     db.commit()
     return {"message": "Vista registrada correctamente", "video_id": id}
-
 
 @router.put(
     "/{id}",
@@ -261,7 +251,6 @@ def update_video(
 
     return to_video_response(video, current_user.name)
 
-
 @router.delete(
     "/{id}",
     response_model=MessageResponse,
@@ -289,11 +278,9 @@ async def delete_video(
     video_url = video.video_url
     thumbnail_url = video.thumbnail_url
 
-    # Borrar registro de RDS primero para garantizar consistencia transaccional
     db.delete(video)
     db.commit()
 
-    # Borrado no bloqueante de archivos en S3
     await delete_file_from_s3_or_local(video_url, settings.S3_BUCKET_VIDEOS, "videos")
     await delete_file_from_s3_or_local(thumbnail_url, settings.S3_BUCKET_THUMBNAILS, "thumbnails")
 

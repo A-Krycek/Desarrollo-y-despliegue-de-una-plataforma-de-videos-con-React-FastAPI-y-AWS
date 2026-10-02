@@ -10,7 +10,7 @@ import { Button, Alert, Input, Textarea } from '../atoms';
 import { ModalHeader, FormField } from '../molecules';
 
 export const UploadModal = ({ isOpen, onClose, onUploadSuccess }) => {
-  // Declarar todos los hooks incondicionalmente (React Rules of Hooks)
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [videoFile, setVideoFile] = useState(null);
@@ -22,7 +22,6 @@ export const UploadModal = ({ isOpen, onClose, onUploadSuccess }) => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
-  // Cerrar modal con la tecla Escape (Accesibilidad WCAG)
   const handleKeyDown = useCallback(
     (e) => {
       if (e.key === 'Escape' && !uploading) {
@@ -48,7 +47,6 @@ export const UploadModal = ({ isOpen, onClose, onUploadSuccess }) => {
 
   if (!isOpen) return null;
 
-  // Validación de Video
   const handleVideoChange = (e) => {
     const file = e.target.files[0];
     setError(null);
@@ -63,7 +61,7 @@ export const UploadModal = ({ isOpen, onClose, onUploadSuccess }) => {
       return;
     }
 
-    const maxSize = 100 * 1024 * 1024; // 100 MB
+    const maxSize = 100 * 1024 * 1024;
     if (file.size > maxSize) {
       setError('El tamaño del video excede el límite máximo permitido de 100 MB.');
       e.target.value = '';
@@ -73,7 +71,6 @@ export const UploadModal = ({ isOpen, onClose, onUploadSuccess }) => {
     setVideoFile(file);
   };
 
-  // Validación de Miniatura
   const handleThumbnailChange = (e) => {
     const file = e.target.files[0];
     setError(null);
@@ -141,32 +138,28 @@ export const UploadModal = ({ isOpen, onClose, onUploadSuccess }) => {
       const videoExt = '.' + (videoFile.name.split('.').pop() || 'mp4').toLowerCase();
       const thumbExt = '.' + (thumbnailFile.name.split('.').pop() || 'jpg').toLowerCase();
 
-      // 1. Solicitar Presigned URLs al backend
       const presigned = await getPresignedUploadUrls(videoExt, thumbExt);
       let newVideo;
 
-      // 2. Si S3 está activo, subir directamente al bucket sin pasar por la RAM de EC2
       if (presigned?.video?.direct_s3 && presigned?.video?.upload_url) {
-        // Subida de video directamente a S3
+
         await uploadFileDirectToS3(
           presigned.video.upload_url,
           videoFile,
           'video/mp4',
-          (pct) => setProgress(Math.round(pct * 0.7)) // 0% a 70%
+          (pct) => setProgress(Math.round(pct * 0.7))
         );
 
-        // Subida de miniatura directamente a S3
         const thumbType = thumbnailFile.type || 'image/jpeg';
         await uploadFileDirectToS3(
           presigned.thumbnail.upload_url,
           thumbnailFile,
           thumbType,
-          (pct) => setProgress(70 + Math.round(pct * 0.25)) // 70% a 95%
+          (pct) => setProgress(70 + Math.round(pct * 0.25))
         );
 
         setProgress(98);
 
-        // 3. Registrar únicamente la metadata en FastAPI -> RDS
         newVideo = await registerDirectVideo({
           title: title.trim(),
           description: description.trim(),
@@ -174,7 +167,7 @@ export const UploadModal = ({ isOpen, onClose, onUploadSuccess }) => {
           thumbnail_key: presigned.thumbnail.key,
         });
       } else {
-        // Fallback local: subida por streaming al backend
+
         const formData = new FormData();
         formData.append('title', title.trim());
         formData.append('description', description.trim());
@@ -252,9 +245,7 @@ export const UploadModal = ({ isOpen, onClose, onUploadSuccess }) => {
               disabled={uploading}
             />
           </FormField>
-
-          {/* INPUT ARCHIVO VIDEO */}
-          <div className="form-group">
+<div className="form-group">
             <label className="file-drop-label" htmlFor="video-file-input">
               <span className="file-label-title">Archivo de Video (MP4) *</span>
               <span className="file-label-subtitle">Bucket S3 Videos · Máximo 100 MB</span>
@@ -285,9 +276,7 @@ export const UploadModal = ({ isOpen, onClose, onUploadSuccess }) => {
               />
             </div>
           </div>
-
-          {/* INPUT MINIATURA */}
-          <div className="form-group">
+<div className="form-group">
             <label className="file-drop-label" htmlFor="thumbnail-file-input">
               <span className="file-label-title">Miniatura de portada *</span>
               <span className="file-label-subtitle">Bucket S3 Miniaturas · Formatos JPG, JPEG o PNG</span>
@@ -324,9 +313,7 @@ export const UploadModal = ({ isOpen, onClose, onUploadSuccess }) => {
               />
             </div>
           </div>
-
-          {/* BARRA DE PROGRESO DE SUBIDA */}
-          {uploading && (
+{uploading && (
             <div className="progress-section" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100}>
               <div className="progress-labels">
                 <span>Subiendo archivos a Amazon S3...</span>
@@ -337,9 +324,7 @@ export const UploadModal = ({ isOpen, onClose, onUploadSuccess }) => {
               </div>
             </div>
           )}
-
-          {/* BOTONES DE ACCIÓN */}
-          <div className="modal-footer">
+<div className="modal-footer">
             <Button
               variant="cancel"
               onClick={handleClose}

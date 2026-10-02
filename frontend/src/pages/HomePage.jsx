@@ -2,12 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { getVideos } from '../api/client';
 import { HomeTemplate } from '../components/templates';
 
-/**
- * PÁGINA 2: PRINCIPAL
- * Utiliza arquitectura atómica integrando el HomeTemplate.
- * Muestra dinámicamente los videos desde FastAPI con:
- * Miniatura, Título, Usuario publicador, Número de vistas, Fecha de publicación.
- */
 export const HomePage = ({ searchQuery, onSelectVideo, onOpenUpload, refreshKey = 0 }) => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -36,7 +30,6 @@ export const HomePage = ({ searchQuery, onSelectVideo, onOpenUpload, refreshKey 
 
       const data = await getVideos(params);
 
-      // Compatibilidad: admite respuesta paginada { items, total, page, pages } o array plano
       const items = Array.isArray(data) ? data : (data?.items || []);
       const total = Array.isArray(data) ? data.length : (data?.total ?? items.length);
       const pages = Array.isArray(data) ? 1 : (data?.pages ?? 1);

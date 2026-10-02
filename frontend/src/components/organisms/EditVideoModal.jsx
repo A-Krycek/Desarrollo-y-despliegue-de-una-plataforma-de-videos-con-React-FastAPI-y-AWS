@@ -5,13 +5,12 @@ import { Button, Alert, Input, Textarea } from '../atoms';
 import { ModalHeader, FormField } from '../molecules';
 
 export const EditVideoModal = ({ video, isOpen, onClose, onUpdateSuccess }) => {
-  // Declarar todos los hooks incondicionalmente al inicio (Rules of Hooks)
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(null);
 
-  // Sincronizar campos cuando cambia el video
   useEffect(() => {
     if (video) {
       setTitle(video.title || '');
@@ -20,7 +19,6 @@ export const EditVideoModal = ({ video, isOpen, onClose, onUpdateSuccess }) => {
     }
   }, [video]);
 
-  // Cerrar con Escape
   const handleKeyDown = useCallback(
     (e) => {
       if (e.key === 'Escape' && !saving) {
@@ -44,7 +42,6 @@ export const EditVideoModal = ({ video, isOpen, onClose, onUpdateSuccess }) => {
     };
   }, [isOpen, handleKeyDown]);
 
-  // Si no está abierto o no hay video, retornar null después de los hooks
   if (!isOpen || !video) return null;
 
   const handleSubmit = async (e) => {

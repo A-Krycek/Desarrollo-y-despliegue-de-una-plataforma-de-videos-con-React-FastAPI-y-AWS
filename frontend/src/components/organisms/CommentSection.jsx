@@ -64,9 +64,7 @@ export const CommentSection = ({ videoId, onRequireAuth }) => {
           Comentarios ({comments.length})
         </h3>
       </div>
-
-      {/* FORMULARIO DE COMENTARIO */}
-      {isAuthenticated ? (
+{isAuthenticated ? (
         <form className="comment-form" onSubmit={handleSubmit}>
           <Avatar name={user.name} size="form" />
           <div className="comment-input-wrapper">
@@ -102,9 +100,7 @@ export const CommentSection = ({ videoId, onRequireAuth }) => {
           </Button>
         </div>
       )}
-
-      {/* LISTA DE COMENTARIOS CON COMMENT ITEM MOLECULE */}
-      <div className="comments-list">
+<div className="comments-list">
         {loading ? (
           <div className="loading-state">
             <Spinner size={24} text="Cargando comentarios..." />

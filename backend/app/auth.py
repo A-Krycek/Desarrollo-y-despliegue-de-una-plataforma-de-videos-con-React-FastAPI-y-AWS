@@ -13,11 +13,8 @@ from app.models import User
 
 security = HTTPBearer(auto_error=False)
 
-# ==========================================
-# UTILIDADES DE CONTRASEÑA (PBKDF2-SHA256)
-# ==========================================
 def hash_password(password: str) -> str:
-    """Genera un hash seguro PBKDF2-HMAC-SHA256 con salt aleatorio"""
+
     salt = secrets.token_hex(16)
     iterations = 100_000
     derived = hashlib.pbkdf2_hmac(
@@ -29,7 +26,7 @@ def hash_password(password: str) -> str:
     return f"pbkdf2:sha256:{iterations}${salt}${derived}"
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
-    """Verifica si la contraseña coincide con el hash almacenado"""
+
     try:
         parts = hashed_password.split('$')
         if len(parts) != 3:
@@ -48,11 +45,8 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     except Exception:
         return False
 
-# ==========================================
-# GESTIÓN DE TOKENS JWT
-# ==========================================
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
-    """Genera un JWT firmado con expiración configurable"""
+
     to_encode = data.copy()
     expire = datetime.now(timezone.utc) + (
         expires_delta or timedelta(minutes=settings.JWT_ACCESS_TOKEN_EXPIRE_MINUTES)
@@ -62,7 +56,7 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -
     return encoded_jwt
 
 def decode_token(token: str) -> dict:
-    """Decodifica y valida la firma y expiración del JWT"""
+
     try:
         payload = jwt.decode(token, settings.JWT_SECRET_KEY, algorithms=[settings.JWT_ALGORITHM])
         return payload
@@ -79,9 +73,6 @@ def decode_token(token: str) -> dict:
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-# ==========================================
-# DEPENDENCIAS DE AUTENTICACIÓN
-# ==========================================
 def get_current_user(
     credentials: Optional[HTTPAuthorizationCredentials] = Depends(security),
     db: Session = Depends(get_db)
@@ -93,7 +84,7 @@ def get_current_user(
             detail="Se requiere token de autenticación Bearer",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
+
     payload = decode_token(credentials.credentials)
     user_id = payload.get("sub")
     if not user_id:
@@ -101,7 +92,7 @@ def get_current_user(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Token no contiene identificador de usuario válido"
         )
-    
+
     user = db.query(User).filter(User.id == int(user_id)).first()
     if not user:
         raise HTTPException(

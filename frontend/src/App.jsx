@@ -5,34 +5,21 @@ import { UploadModal } from './components/organisms';
 import { Spinner } from './components/atoms';
 import './App.css';
 
-// Lazy loading y code-splitting para optimizar el bundle inicial y puntuación Lighthouse
 const HomePage = lazy(() => import('./pages/HomePage'));
 const PlayerPage = lazy(() => import('./pages/PlayerPage'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage'));
 const AuthPage = lazy(() => import('./pages/AuthPage'));
 
-/**
- * COMPONENTE PRINCIPAL (SPA)
- * Arquitectura: React + Vite Single Page Application estructurada bajo Atomic Design.
- * Solo contiene las 4 páginas requeridas:
- * - Página 1: Registro / Login (AuthPage)
- * - Página 2: Principal (HomePage)
- * - Página 3: Reproductor (PlayerPage)
- * - Página 4: Perfil del usuario (ProfilePage)
- */
 export function App() {
   const { isAuthenticated, loading } = useAuth();
 
-  // Estados de navegación SPA: 'home' | 'player' | 'profile' | 'auth'
   const [currentPage, setCurrentPage] = useState('home');
   const [selectedVideoId, setSelectedVideoId] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
 
-  // Clave reactiva para refrescar catálogos sin destruir el estado de la SPA (elimina window.location.reload)
   const [refreshKey, setRefreshKey] = useState(0);
 
-  // Sincronizar navegación con Hash de URL para soporte de historial del navegador
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '') || 'home';
@@ -99,8 +86,7 @@ export function App() {
           </div>
         }
       >
-        {/* PÁGINA 2: PRINCIPAL */}
-        {currentPage === 'home' && (
+{currentPage === 'home' && (
           <HomePage
             searchQuery={searchQuery}
             onSelectVideo={handleSelectVideo}
@@ -108,9 +94,7 @@ export function App() {
             refreshKey={refreshKey}
           />
         )}
-
-        {/* PÁGINA 3: REPRODUCTOR */}
-        {currentPage === 'player' && (
+{currentPage === 'player' && (
           <PlayerPage
             videoId={selectedVideoId}
             onSelectVideo={handleSelectVideo}
@@ -118,9 +102,7 @@ export function App() {
             onRequireAuth={() => navigateTo('auth')}
           />
         )}
-
-        {/* PÁGINA 4: PERFIL DEL USUARIO */}
-        {currentPage === 'profile' && (
+{currentPage === 'profile' && (
           <ProfilePage
             onSelectVideo={handleSelectVideo}
             onOpenUpload={handleOpenUpload}
@@ -128,21 +110,17 @@ export function App() {
             refreshKey={refreshKey}
           />
         )}
-
-        {/* PÁGINA 1: REGISTRO / LOGIN */}
-        {currentPage === 'auth' && (
+{currentPage === 'auth' && (
           <AuthPage
             onAuthSuccess={() => navigateTo('home')}
           />
         )}
       </Suspense>
-
-      {/* MODAL GLOBAL PARA PUBLICACIÓN DE VIDEO EN S3 */}
-      <UploadModal
+<UploadModal
         isOpen={isUploadModalOpen}
         onClose={() => setIsUploadModalOpen(false)}
         onUploadSuccess={() => {
-          // Actualización de estado reactiva en vez de recargar la página entera (window.location.reload eliminado)
+
           setRefreshKey((prev) => prev + 1);
           if (currentPage !== 'profile' && currentPage !== 'home') {
             navigateTo('profile');

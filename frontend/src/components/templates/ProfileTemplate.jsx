@@ -22,15 +22,10 @@ export const ProfileTemplate = ({
 }) => {
   return (
     <div className="profile-page-container">
-      {/* TARJETA DE PERFIL (DATOS BÁSICOS DEL USUARIO Y CANTIDAD DE VIDEOS) */}
-      <UserProfileCard user={user} />
-
-      {/* MENSAJES DE NOTIFICACIÓN */}
-      <Alert type="success" message={notification} />
+<UserProfileCard user={user} />
+<Alert type="success" message={notification} />
       <Alert type="error" message={error} />
-
-      {/* SECCIÓN DE GESTIÓN DE VIDEOS */}
-      <div className="profile-videos-section">
+<div className="profile-videos-section">
         <div className="section-header-row">
           <div className="section-title-wrap">
             <Film size={22} className="section-icon" />
@@ -44,9 +39,7 @@ export const ProfileTemplate = ({
             Nuevo Video
           </Button>
         </div>
-
-        {/* LISTADO DE VIDEOS SUBIDOS (CRUD) */}
-        <UserVideoList
+<UserVideoList
           videos={userVideos}
           loading={loading}
           onSelectVideo={onSelectVideo}
@@ -56,9 +49,7 @@ export const ProfileTemplate = ({
           onOpenUpload={onOpenUpload}
         />
       </div>
-
-      {/* MODAL DE EDICIÓN DE VIDEO */}
-      <EditVideoModal
+<EditVideoModal
         video={videoToEdit}
         isOpen={isEditModalOpen}
         onClose={onCloseEditModal}

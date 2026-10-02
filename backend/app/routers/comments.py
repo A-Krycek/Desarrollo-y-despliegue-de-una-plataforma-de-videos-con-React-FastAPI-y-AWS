@@ -9,7 +9,6 @@ from app.auth import get_current_user
 
 router = APIRouter(prefix="/videos/{id}/comments", tags=["Comentarios"])
 
-
 @router.post(
     "",
     response_model=CommentResponse,
@@ -47,7 +46,6 @@ def add_comment(
         video_id=new_comment.video_id,
         created_at=new_comment.created_at
     )
-
 
 @router.get(
     "",

@@ -17,7 +17,6 @@ router = APIRouter(tags=["Usuarios"])
     description="Crea una nueva cuenta de usuario en la base de datos (RDS) con contraseña encriptada."
 )
 def register_user(user_in: UserCreate, db: Session = Depends(get_db)):
-    # Verificar si el correo ya existe
     existing_user = db.query(User).filter(User.email == user_in.email.lower()).first()
     if existing_user:
         raise HTTPException(
@@ -25,7 +24,6 @@ def register_user(user_in: UserCreate, db: Session = Depends(get_db)):
             detail="Ya existe una cuenta registrada con este correo electrónico."
         )
 
-    # Crear usuario con hash seguro
     new_user = User(
         name=user_in.name.strip(),
         email=user_in.email.lower().strip(),
@@ -43,7 +41,6 @@ def register_user(user_in: UserCreate, db: Session = Depends(get_db)):
         video_count=0
     )
 
-
 @router.post(
     "/login",
     response_model=TokenResponse,
@@ -59,7 +56,6 @@ def login(credentials: UserLogin, db: Session = Depends(get_db)):
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    # Contar videos del usuario
     video_count = db.query(func.count(Video.id)).filter(Video.user_id == user.id).scalar() or 0
 
     access_token = create_access_token(data={"sub": str(user.id), "email": user.email})
@@ -74,7 +70,6 @@ def login(credentials: UserLogin, db: Session = Depends(get_db)):
             video_count=video_count
         )
     )
-
 
 @router.get(
     "/users/{id}",

@@ -13,7 +13,6 @@ from sqlalchemy.pool import StaticPool
 from main import app
 from app.database import Base, get_db
 
-# Base de datos SQLite aislada en memoria para pruebas automáticas (sin afectar producción ni RDS)
 SQLALCHEMY_DATABASE_URL = "sqlite:///:memory:"
 
 engine = create_engine(
@@ -53,14 +52,12 @@ def auth_token(client):
     res = client.post("/login", json={"email": user_payload["email"], "password": user_payload["password"]})
     return res.json()["access_token"]
 
-
 def test_health(client):
     res = client.get("/health")
     assert res.status_code == 200
     data = res.json()
     assert data["status"] == "healthy"
     assert data["database"] == "connected"
-
 
 def test_user_registration(client):
     user_payload = {
@@ -74,11 +71,9 @@ def test_user_registration(client):
     assert data["email"] == user_payload["email"]
     assert "id" in data
 
-
 def test_user_login_invalid(client):
     res = client.post("/login", json={"email": "nonexistent@example.com", "password": "wrong"})
     assert res.status_code == 401
-
 
 def test_presigned_url_generation(client, auth_token):
     headers = {"Authorization": f"Bearer {auth_token}"}
@@ -89,7 +84,6 @@ def test_presigned_url_generation(client, auth_token):
     assert "video" in data
     assert "thumbnail" in data
     assert "upload_url" in data["video"]
-
 
 def test_video_upload_and_stream(client, auth_token):
     headers = {"Authorization": f"Bearer {auth_token}"}
@@ -110,18 +104,15 @@ def test_video_upload_and_stream(client, auth_token):
     assert video["title"] == "Video de Prueba Pytest"
     assert video["views"] == 0
 
-    # Consultar detalle (GET puro de lectura)
     vid_id = video["id"]
     res_get = client.get(f"/videos/{vid_id}")
     assert res_get.status_code == 200
     assert res_get.json()["views"] == 0
 
-    # Incrementar vistas de forma atómica en endpoint dedicado
     res_view = client.post(f"/videos/{vid_id}/views")
     assert res_view.status_code == 200
     res_after = client.get(f"/videos/{vid_id}")
     assert res_after.json()["views"] == 1
-
 
 def test_comments_and_pagination(client, auth_token):
     headers = {"Authorization": f"Bearer {auth_token}"}
@@ -130,7 +121,6 @@ def test_comments_and_pagination(client, auth_token):
     assert len(items) > 0
     vid_id = items[0]["id"]
 
-    # Agregar comentario
     res_c = client.post(
         f"/videos/{vid_id}/comments",
         json={"content": "Comentario de prueba unitaria"},
@@ -138,7 +128,6 @@ def test_comments_and_pagination(client, auth_token):
     )
     assert res_c.status_code == 201
 
-    # Listar comentarios con paginación
     res_list = client.get(f"/videos/{vid_id}/comments?page=1&limit=10")
     assert res_list.status_code == 200
     comments_resp = res_list.json()

@@ -3,13 +3,6 @@ import { useAuth } from '../context/AuthContext';
 import { getVideos, deleteVideo } from '../api/client';
 import { ProfileTemplate } from '../components/templates';
 
-/**
- * PÁGINA 4: PERFIL DEL USUARIO
- * Utiliza arquitectura atómica integrando el ProfileTemplate.
- * Muestra:
- * Información básica del usuario, Cantidad de videos publicados, Lista de videos subidos.
- * Permite: Publicar videos, Consultar sus videos, Actualizar información del video, Eliminar videos.
- */
 export const ProfilePage = ({ onSelectVideo, onOpenUpload, onRequireAuth, refreshKey = 0 }) => {
   const { user, isAuthenticated, refreshUser } = useAuth();
   const [userVideos, setUserVideos] = useState([]);
@@ -17,11 +10,9 @@ export const ProfilePage = ({ onSelectVideo, onOpenUpload, onRequireAuth, refres
   const [error, setError] = useState(null);
   const [notification, setNotification] = useState(null);
 
-  // Estado para editar video
   const [videoToEdit, setVideoToEdit] = useState(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-  // Estado de eliminación en curso
   const [deletingId, setDeletingId] = useState(null);
 
   const fetchUserVideos = async () => {
@@ -46,7 +37,6 @@ export const ProfilePage = ({ onSelectVideo, onOpenUpload, onRequireAuth, refres
     }
   }, [isAuthenticated, user?.id, refreshKey]);
 
-  // Manejo de eliminación en cascada (S3 y RDS)
   const handleDelete = async (videoId, videoTitle) => {
     const confirmDelete = window.confirm(
       `¿Estás seguro de que deseas eliminar el video "${videoTitle}"? Se borrará de Amazon S3 y de la base de datos RDS permanentemente.`
@@ -68,7 +58,6 @@ export const ProfilePage = ({ onSelectVideo, onOpenUpload, onRequireAuth, refres
     }
   };
 
-  // Abrir modal de edición
   const handleEditClick = (video) => {
     setVideoToEdit(video);
     setIsEditModalOpen(true);
