@@ -148,15 +148,16 @@ Para encender el servidor manualmente en tu instancia EC2:
    ssh -i "tu-clave.pem" ubuntu@<IP_PUBLICA_EC2>
    ```
 
-2. **Instala los paquetes básicos**:
+2. **Instala los paquetes del sistema (Python + Node.js + PM2)**:
    ```bash
    sudo apt-get update
-   sudo apt-get install -y python3 python3-pip python3-venv git libpq-dev
+   sudo apt-get install -y python3 python3-pip python3-venv git libpq-dev nodejs npm
+   sudo npm install -g pm2
    ```
 
 3. **Clona tu repositorio**:
    ```bash
-   git clone https://github.com/<tu-usuario>/video-platform-aws.git
+   git clone https://github.com/A-Krycek/Desarrollo-y-despliegue-de-una-plataforma-de-videos-con-React-FastAPI-y-AWS.git video-platform-aws
    cd video-platform-aws/backend
    ```
 
@@ -172,21 +173,19 @@ Para encender el servidor manualmente en tu instancia EC2:
    ```bash
    nano .env
    ```
-   *(Ingresa los endpoints de tu RDS y los nombres de tus buckets S3)*.
 
-6. **Enciende el servidor con FastAPI**:
+6. **Inicia el servidor con PM2**:
    ```bash
-   # Modo desarrollo con auto-reload:
-   fastapi dev --host 0.0.0.0 --port 8000
-
-   # O modo producción:
-   fastapi run --host 0.0.0.0 --port 8000
+   pm2 start venv/bin/fastapi --name video-platform-api -- run app/main.py --host 0.0.0.0 --port 8000
+   pm2 save
+   pm2 startup
    ```
 
 7. **Verifica en tu navegador**:
    ```
-   http://<IP_PUBLICA_EC2>:8000/docs
+   http://3.89.105.251:8000/docs
    ```
+
 
 ---
 

@@ -54,10 +54,11 @@ flowchart TD
 
         subgraph Compute_Layer["Capa de Cómputo (Amazon EC2 - 3.89.105.251)"]
             subgraph EC2_Instance["Instancia i-04273f9c71ed7f695 (video-platform-api)"]
-                FastAPI["FastAPI / Uvicorn (Puerto 8000)\nEndpoints REST & Swagger UI\nsystemd: video-platform.service"]
+                FastAPI["FastAPI en PM2 (Puerto 8000)\nComando: fastapi run app/main.py\nPersistencia y auto-reinicio PM2"]
                 Boto3["AWS SDK (Boto3)\nCredenciales automáticas IMDSv2"]
             end
         end
+
 
         subgraph Database_Layer["Capa de Persistencia (Amazon RDS)"]
             RDS[("Amazon RDS PostgreSQL\nEndpoint: video-platform-db.c2z26ggasfw5...\nPuerto 5432 (Acceso privado desde EC2)")]
