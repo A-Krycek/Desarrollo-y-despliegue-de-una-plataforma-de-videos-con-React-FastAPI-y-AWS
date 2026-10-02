@@ -8,10 +8,12 @@ Este documento sirve como lista de verificación (*checklist*) y plantilla de re
 
 | Elemento | URL / Identificador | Observaciones |
 | :--- | :--- | :--- |
-| **Repositorio GitHub / GitLab** | `https://github.com/<tu-usuario>/video-platform-aws` | Código completo del Frontend, Backend (FastAPI CLI) y documentación. |
-| **URL Pública de la SPA** | `http://<bucket-frontend>.s3-website-<region>.amazonaws.com` | Alojada en el Bucket 1 de Amazon S3 con Static Website Hosting. |
-| **URL Pública de FastAPI** | `http://<ip-publica-ec2>:8000/docs` | Documentación interactiva Swagger UI iniciada con `fastapi dev`. |
-| **Video Explicativo** | `https://youtu.be/...` o enlace a Google Drive/Loom | Grabación demostrativa de la plataforma y la arquitectura AWS. |
+| **Repositorio GitHub** | `https://github.com/A-Krycek/Desarrollo-y-despliegue-de-una-plataforma-de-videos-con-React-FastAPI-y-AWS.git` | Código completo del Frontend, Backend (FastAPI CLI) y documentación. |
+| **URL Pública de la SPA (Principal)** | `http://video-platform-frontend-kry.s3-website-us-east-1.amazonaws.com` | Alojada en Amazon S3 con Static Website Hosting. |
+| **URL Demostración Reproductor** | `http://video-platform-frontend-kry.s3-website-us-east-1.amazonaws.com/#player?id=16` | Reproductor funcional con streaming MP4, vistas y comentarios. |
+| **URL Pública de FastAPI (Swagger UI)** | `http://3.89.105.251:8000/docs#/` | Documentación interactiva Swagger UI en instancia EC2. |
+| **URL Raíz de la API (Health)** | `http://3.89.105.251:8000/` | Endpoint raíz de verificación de estado y versión de la API. |
+| **Video Explicativo** | `[Enlace a tu video de YouTube / Google Drive / Loom]` | Grabación demostrativa de la plataforma y arquitectura AWS. |
 
 ---
 
